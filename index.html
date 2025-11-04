@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Złap Kwadrat!</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        /* To jest nasz główny obszar gry */
+        #game-area {
+            width: 600px;
+            height: 400px;
+            border: 3px solid #000;
+            background-color: #fff;
+            margin: 20px auto;
+            position: relative; /* Ważne dla pozycjonowania celu */
+            overflow: hidden; /* Aby cel nie "wyszedł" poza ramkę */
+        }
+        /* To jest nasz cel do klikania */
+        #target {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute; /* Pozwala na swobodne przesuwanie */
+            cursor: pointer;
+            display: none; /* Ukryty na starcie */
+            transition: all 0.1s ease; /* Płynne znikanie/pojawianie się */
+        }
+        #start-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #game-info {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gra: Złap Czerwony Kwadrat!</h1>
+    
+    <div id="game-info">
+        Wynik: <span id="score">0</span> | Czas: <span id="time">15</span>s
+    </div>
+    
+    <button id="start-button">Start!</button>
+    
+    <div id="game-area">
+        <div id="target"></div>
+    </div>
+
+    <script>
+        // "defer" sprawia, że skrypt uruchomi się dopiero po wczytaniu całej strony
+        
+        // 1. Znajdujemy nasze elementy na stronie
+        const target = document.getElementById('target');
+        const gameArea = document.getElementById('game-area');
+        const scoreDisplay = document.getElementById('score');
+        const timeDisplay = document.getElementById('time');
+        const startButton = document.getElementById('start-button');
+
+        // 2. Zmienne przechowujące stan gry
+        let score = 0;
+        let timeLeft = 15;
+        let gameInterval = null;
+        let isGameRunning = false;
+
+        // 3. Co się dzieje po kliknięciu "Start"
+        startButton.addEventListener('click', startGame);
+
+        function startGame() {
+            // Resetowanie gry
+            score = 0;
+            timeLeft = 15;
+            scoreDisplay.textContent = score;
+            timeDisplay.textContent = timeLeft;
+            isGameRunning = true;
+
+            // Ukrywamy przycisk start i pokazujemy cel
+            startButton.style.display = 'none';
+            target.style.display = 'block';
+            
+            // Uruchamiamy odliczanie czasu
+            gameInterval = setInterval(updateTimer, 1000);
+            
+            // Ustawiamy cel w losowym miejscu
+            moveTarget();
+        }
+
+        // 4. Co się dzieje, gdy klikniemy w cel
+        target.addEventListener('click', () => {
+            if (isGameRunning) {
+                // Zwiększamy wynik
+                score++;
+                scoreDisplay.textContent = score;
+                
+                // Przesuwamy cel w inne miejsce
+                moveTarget();
+            }
+        });
+
+        // 5. Funkcja do przesuwania celu
+        function moveTarget() {
+            // Pobieramy wymiary obszaru gry
+            const areaWidth = gameArea.clientWidth;
+            const areaHeight = gameArea.clientHeight;
+            
+            // Pobieramy wymiary celu
+            const targetWidth = target.clientWidth;
+            const targetHeight = target.clientHeight;
+
+            // Losujemy nową pozycję (X, Y)
+            // Odejmujemy wymiar celu, aby nie wyszedł poza ramkę
+            const newX = Math.floor(Math.random() * (areaWidth - targetWidth));
+            const newY = Math.floor(Math.random() * (areaHeight - targetHeight));
+
+            // Ustawiamy cel w nowym miejscu
+            target.style.left = newX + 'px';
+            target.style.top = newY + 'px';
+        }
+
+        // 6. Funkcja, która odlicza czas
+        function updateTimer() {
+            timeLeft--;
+            timeDisplay.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }
+
+        // 7. Co się dzieje, gdy skończy się czas
+        function endGame() {
+            // Zatrzymujemy odliczanie
+            clearInterval(gameInterval);
+            isGameRunning = false;
+            
+            // Chowamy cel
+            target.style.display = 'none';
+            
+            // Pokazujemy przycisk start z nowym tekstem
+            startButton.textContent = 'Zagraj ponownie?';
+            startButton.style.display = 'block';
+            
+            // Informujemy o wyniku
+            alert('Koniec gry! Twój ostateczny wynik to: ' + score);
+        }
+
+    </script>
+
+</body>
+</html>
