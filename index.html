@@ -14,12 +14,15 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f0f0f0;
-            margin-top: 50px;
+            margin: 0;
+            padding: 0;
         }
+
         h1 {
             color: #333;
+            margin-top: 40px;
         }
-        /* Główny obszar gry */
+
         #game-area {
             width: 600px;
             height: 400px;
@@ -29,6 +32,7 @@
             position: relative;
             overflow: hidden;
         }
+
         #target {
             width: 50px;
             height: 50px;
@@ -38,18 +42,38 @@
             display: none;
             transition: all 0.1s ease;
         }
+
         #start-button {
             font-size: 20px;
             padding: 10px 20px;
             cursor: pointer;
         }
+
         #game-info {
             font-size: 24px;
             font-weight: bold;
         }
+
         .ad-container {
             margin: 20px auto;
             text-align: center;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #222;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #4db8ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -92,6 +116,11 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+
+    <footer>
+        <p>© 2025 FortStar77. Wszelkie prawa zastrzeżone.</p>
+        <p><a href="https://fortstar77.github.io/privacy/" target="_blank">Polityka prywatności</a></p>
+    </footer>
 
     <script>
         const target = document.getElementById('target');
