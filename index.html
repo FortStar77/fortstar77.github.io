@@ -7,6 +7,7 @@
     
     <meta name="description" content="Przebudowana gra 'Złap Cel!'. Sprawdź swój refleks na różnych poziomach trudności. Jak szybko potrafisz klikać? Zagraj teraz i pobij swój rekord.">
 
+    <!-- Skrypt Google AdSense (poprawny) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7782110146823036"
      crossorigin="anonymous"></script>
 
@@ -20,12 +21,12 @@
     <style>
         /* === GLOBALNY RESET I MOTYW === */
         :root {
-            /* Dark Theme (Default) */
-            --color-bg: #121212;
-            --color-bg-container: #1E1E1E;
-            --color-text: #E0E0E0;
-            --color-text-secondary: #AAAAAA;
-            --color-border: #333333;
+            /* ZMIANA: Domyślny motyw to JASNY */
+            --color-bg: #F0F2F5; /* Jasnoszare tło */
+            --color-bg-container: #FFFFFF; /* Białe kontenery */
+            --color-text: #1a1a1a; /* Ciemny tekst */
+            --color-text-secondary: #555555;
+            --color-border: #DDE1E6; /* Jasne obramowania */
     
             /* Wspólne */
             --color-primary: #00A8FF; 
@@ -35,12 +36,13 @@
             --font-heading: 'Oswald', sans-serif;
         }
     
-        body.light-theme {
-            --color-bg: #F0F2F5; /* Jasnoszare tło */
-            --color-bg-container: #FFFFFF; /* Białe kontenery */
-            --color-text: #1a1a1a; /* Ciemny tekst */
-            --color-text-secondary: #555555;
-            --color-border: #DDE1E6; /* Jasne obramowania */
+        /* ZMIANA: Klasa .dark-theme aktywuje tryb ciemny */
+        body.dark-theme {
+            --color-bg: #121212;
+            --color-bg-container: #1E1E1E;
+            --color-text: #E0E0E0;
+            --color-text-secondary: #AAAAAA;
+            --color-border: #333333;
         }
 
         * {
@@ -57,17 +59,23 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            /* Subtelny gradient kierujący wzrok na centrum */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* ZMIANA: Gradient tła tylko dla motywu ciemnego */
+        body.dark-theme {
             background-image: radial-gradient(circle at center, #2a2a2a 0%, var(--color-bg) 70%);
         }
 
         /* === NAGŁÓWEK I NAWIGACJA === */
         header {
             background-color: var(--color-bg-container);
-            color: white;
+            /* ZMIANA: Kolor tekstu w nagłówku */
+            color: var(--color-text);
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lżejszy cień */
             border-bottom: 2px solid var(--color-border);
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         header h1 {
@@ -99,9 +107,13 @@
         }
 
         nav a:hover {
-            color: #ffffff;
+            /* ZMIANA: Poprawka koloru hover w motywie jasnym */
+            color: #0077b3; 
             text-decoration: underline;
             transform: scale(1.05);
+        }
+        body.dark-theme nav a:hover {
+             color: #ffffff; /* Zachowanie z motywu ciemnego */
         }
 
         #theme-toggle-button {
@@ -113,13 +125,14 @@
             height: 40px;
             font-size: 20px;
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
+            transition: background 0.2s, transform 0.2s, color 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         #theme-toggle-button:hover {
             background: var(--color-primary);
+            color: #ffffff; /* Zawsze biały tekst na niebieskim tle */
             transform: scale(1.1);
         }
 
@@ -130,8 +143,13 @@
             padding: 25px;
             background-color: var(--color-bg-container);
             border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Lżejszy cień */
+            transition: background-color 0.3s;
         }
+         body.dark-theme main.container {
+             box-shadow: 0 6px 15px rgba(0,0,0,0.4); /* Cień dla motywu ciemnego */
+         }
+
 
         /* === SEKCJE TEKSTOWE === */
       .content-section {
@@ -139,6 +157,7 @@
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid var(--color-border);
+            transition: border-color 0.3s;
         }
 
       .content-section h2 {
@@ -155,6 +174,7 @@
       .content-section p,.content-section ul {
             font-size: 1.1em;
             color: var(--color-text);
+             transition: color 0.3s;
         }
         
       .content-section li {
@@ -170,9 +190,10 @@
             margin: 30px auto;
             text-align: center;
             padding: 20px 0;
-            background-color: var(--color-bg);
+            background-color: var(--color-bg); /* Tło dopasowane do motywu */
             border-radius: 8px;
-            min-height: 50px; /* Zmniejszono minimalną wysokość, aby pasowała do mniejszych reklam */
+            min-height: 50px; 
+            transition: background-color 0.3s;
         }
 
         /* === GRA - NOWE STYLE === */
@@ -194,22 +215,30 @@
             cursor: pointer;
             border: 2px solid var(--color-border);
             border-radius: 5px;
-            background-color: #333;
-            color: var(--color-text);
+            background-color: var(--color-bg-container); /* Dopasowane tło */
+            color: var(--color-text); /* Dopasowany tekst */
             transition: all 0.2s ease;
         }
 
       .difficulty-button:hover {
-            background-color: #444;
+            background-color: var(--color-bg); /* Lekka zmiana tła przy najechaniu */
             transform: scale(1.05);
         }
 
       .difficulty-button.active {
             background-color: var(--color-primary);
-            color: var(--color-bg);
+            color: #ffffff; /* Biały tekst na aktywnym */
             border-color: var(--color-primary);
             box-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
         }
+        /* Poprawka dla motywu jasnego, aby aktywny przycisk był czytelny */
+        body.light-theme .difficulty-button.active {
+             color: #ffffff;
+        }
+         body.dark-theme .difficulty-button.active {
+             color: var(--color-bg);
+         }
+
 
         /* Interfejs Gry */
         #game-info {
@@ -218,16 +247,18 @@
             font-weight: 500;
             margin-bottom: 20px;
             letter-spacing: 1px;
-            color: #ffffff;
+            color: var(--color-text); /* Dopasowanie do motywu */
+             transition: color 0.3s;
         }
 
         #game-info span {
             display: inline-block;
             min-width: 60px;
             padding: 5px 10px;
-            background-color: var(--color-bg);
+            background-color: var(--color-bg); /* Dopasowanie do motywu */
             border-radius: 5px;
             color: var(--color-primary);
+             transition: background-color 0.3s;
         }
         #game-info #high-score {
             color: var(--color-secondary);
@@ -289,7 +320,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 8px;
-            transition: box-shadow 0.5s ease;
+            transition: box-shadow 0.5s ease, border-color 0.3s;
         }
 
         /* Animacja aktywnej ramki gry */
@@ -356,10 +387,15 @@
         footer {
             margin-top: 40px;
             padding: 30px;
-            background-color: #111;
+            /* ZMIANA: Dopasowanie tła stopki */
+            background-color: var(--color-bg-container);
             color: var(--color-text-secondary);
             font-size: 14px;
             border-top: 1px solid var(--color-border);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        body.dark-theme footer {
+             background-color: #111; /* Zachowanie z motywu ciemnego */
         }
         
         footer p {
@@ -373,45 +409,58 @@
         }
 
         footer a:hover {
-            color: #ffffff;
+            color: #0077b3; /* Dopasowanie hovera */
             text-decoration: underline;
         }
+         body.dark-theme footer a:hover {
+             color: #ffffff;
+         }
 
-        /* === DOSTOSOWANIE SWEETALERT2 DO MOTYWU MROCZNEGO === */
-      .swal2-popup {
-            background-color: var(--color-bg-container)!important;
-            color: var(--color-text)!important;
+
+        /* === DOSTOSOWANIE SWEETALERT2 DO MOTYWU === */
+        /* Domyślnie stylizujemy pod motyw jasny */
+       .swal2-popup {
+            background-color: #FFFFFF!important;
+            color: #1a1a1a!important;
             border-radius: 12px!important;
         }
-      .swal2-title {
+       .swal2-title {
             color: var(--color-primary)!important;
             font-family: var(--font-heading)!important;
         }
-      .swal2-html-container {
-            color: var(--color-text)!important;
+       .swal2-html-container {
+            color: #1a1a1a!important;
             font-size: 1.2em!important;
         }
-      .swal2-confirm {
+       .swal2-confirm {
             background-color: var(--color-primary)!important;
             font-size: 1.1em!important;
             border-radius: 5px!important;
         }
-      .swal2-icon.swal2-success.swal2-success-ring {
+       .swal2-icon.swal2-success.swal2-success-ring {
             border-color: var(--color-secondary)!important;
         }
-      .swal2-icon.swal2-success [class^=swal2-success-line] {
+       .swal2-icon.swal2-success [class^=swal2-success-line] {
             background-color: var(--color-secondary)!important;
         }
+
+        /* Nadpisanie dla motywu ciemnego */
+        body.dark-theme .swal2-popup {
+            background-color: var(--color-bg-container)!important;
+            color: var(--color-text)!important;
+        }
+        body.dark-theme .swal2-html-container {
+            color: var(--color-text)!important;
+        }
+
     </style>
 </head>
-<body>
+<body> <!-- ZMIANA: Usunięto klasę 'light-theme', JS się tym zajmie -->
 
+    <!-- ZMIANA: Tylko reklamy Google AdSense zostały na górze -->
     <div id="top-ads-container" style="text-align: center; background-color: var(--color-bg);">
-        <!-- NOWE REKLAMY -->
-        <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
-        <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
 
-        <!-- PRZENIESIONE REKLAMY GOOGLE (1) -->
+        <!-- REKLAMY GOOGLE (1) -->
         <div class="ad-container">
             <ins class="adsbygoogle"
                  style="display:block"
@@ -423,7 +472,7 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-        <!-- PRZENIESIONE REKLAMY GOOGLE (2) -->
+        <!-- REKLAMY GOOGLE (2) -->
         <div class="ad-container">
             <ins class="adsbygoogle"
                  style="display:block"
@@ -435,68 +484,6 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-
-        <!-- PRZENIESIONE REKLAMY (HIGHPERFORMANCE) -->
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'e57f905cb56d171f7a667907ea9d09ed',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
-        </div>
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '0eb31f55c9c1dfb639e06d25e640027d',
-                    'format' : 'iframe',
-                    'height' : 600,
-                    'width' : 160,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
-        </div>
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
-                    'format' : 'iframe',
-                    'height' : 300,
-                    'width' : 160,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
-        </div>
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
-        </div>
-        <div class="ad-container">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '786f8d1076514166c7b4445571f0809d',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
-        </div>
     </div>
 
     <header>
@@ -507,25 +494,11 @@
                 <li><a href="about.html">O nas</a></li>
                 <li><a href="contact.html">Kontakt</a></li>
                 <li><a href="https://fortstar77.github.io/privacy/" target="_blank" rel="noopener noreferrer">Polityka Prywatności</a></li>
-                <li><button id="theme-toggle-button" aria-label="Zmień motyw">☀️</button></li>
+                <!-- ZMIANA: Domyślna ikona to księżyc (bo motyw jest jasny) -->
+                <li><button id="theme-toggle-button" aria-label="Zmień motyw">🌙</button></li>
             </ul>
         </nav>
     </header>
-
-    <!-- TA REKLAMA ZOSTAŁA PRZENIESIONA NA GÓRĘ
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-7782110146823036"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             <!-- POPRAWKA BŁĘDU 1: Dodano '[]' -->
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-    -->
 
     <main class="container">
 
@@ -563,21 +536,6 @@
         <div id="game-area" aria-label="Obszar gry Złap Cel">
             <div id="target" role="button" tabindex="0" aria-label="Złap Czerwony Cel"></div>
         </div>
-
-        <!-- TA REKLAMA ZOSTAŁA PRZENIESIONA NA GÓRĘ
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7782110146823036"
-                 data-ad-slot="9876543210"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 <!-- POPRAWKA BŁĘDU 2: Dodano '[]' -->
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        -->
 
     </main> 
     
@@ -648,7 +606,6 @@
                 
                 // Listener dla klawiatury (Dostępność WCAG)
                 DOM.target.addEventListener('keydown', (e) => {
-                    // *** POPRAWKA BŁĘDU 3: Naprawiono przerwany operator '||' (OR) ***
                     if (e.key === ' ' || e.key === 'Enter') {
                         e.preventDefault(); // Zapobiega przewijaniu strony spacją
                         handleTargetClick();
@@ -662,22 +619,23 @@
                     });
                 });
 
-                // --- LOGIKA PRZEŁĄCZNIKA MOTYWU ---
-                // Sprawdź zapisany motyw
-                if (localStorage.getItem('theme') === 'light') {
-                    document.body.classList.add('light-theme');
+                // --- ZMIANA: LOGIKA PRZEŁĄCZNIKA MOTYWU ---
+                // Domyślnie jest jasno, chyba że w pamięci zapisano 'dark'
+                if (localStorage.getItem('theme') === 'dark') {
+                    document.body.classList.add('dark-theme');
+                    DOM.themeToggleButton.textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark-theme');
                     DOM.themeToggleButton.textContent = '🌙';
                 }
     
                 DOM.themeToggleButton.addEventListener('click', () => {
-                    document.body.classList.toggle('light-theme');
-                    let isLight = document.body.classList.contains('light-theme');
-                    DOM.themeToggleButton.textContent = isLight ? '🌙' : '☀️';
-                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                    document.body.classList.toggle('dark-theme');
+                    let isDark = document.body.classList.contains('dark-theme');
+                    DOM.themeToggleButton.textContent = isDark ? '☀️' : '🌙';
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 });
             }
-
-            // *** POPRAWKA BŁĘDU: PRZYWRÓCENIE BRAKUJĄCYCH FUNKCJI ***
 
             /**
              * Ustawia poziom trudności gry
@@ -759,9 +717,6 @@
                     `,
                     icon: 'success',
                     confirmButtonText: 'Super!',
-                    customClass: {
-                        popup: 'swal-dark-theme'
-                    }
                 });
             }
 
@@ -868,12 +823,70 @@
         });
     </script>
 
-    <!-- REKLAMY STĄD RÓWNIEŻ ZOSTAŁY PRZENIESIONE NA GÓRĘ STRONY -->
-    <!-- <div class="ad-container"> ... </div> -->
-    <!-- <div class="ad-container"> ... </div> -->
-    <!-- <div class="ad-container"> ... </div> -->
-    <!-- <div class="ad-container"> ... </div> -->
-    <!-- <div class="ad-container"> ... </div> -->
+    <!-- ZMIANA: Wszystkie reklamy inne niż Google AdSense przeniesione na sam dół strony -->
+    <div id="bottom-ad-scripts" style="display: none;">
+        <!-- REKLAMY POP-UP (PRZENIESIONE) -->
+        <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
+        <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
+    
+        <!-- REKLAMY HIGHPERFORMANCE (PRZENIESIONE) -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'e57f905cb56d171f7a667907ea9d09ed',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
+        
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '0eb31f55c9c1dfb639e06d25e640027d',
+                'format' : 'iframe',
+                'height' : 600,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
+        
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
+                'format' : 'iframe',
+                'height' : 300,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
+        
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
+        
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '786f8d1076514166c7b4445571f0809d',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
+    </div>
 
 </body>
 </html>
+
+
