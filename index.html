@@ -21,7 +21,7 @@
     <style>
         /* === GLOBALNY RESET I MOTYW === */
         :root {
-            /* ZMIANA: Domyślny motyw to JASNY */
+            /* Domyślny motyw to JASNY */
             --color-bg: #F0F2F5; /* Jasnoszare tło */
             --color-bg-container: #FFFFFF; /* Białe kontenery */
             --color-text: #1a1a1a; /* Ciemny tekst */
@@ -36,7 +36,7 @@
             --font-heading: 'Oswald', sans-serif;
         }
     
-        /* ZMIANA: Klasa .dark-theme aktywuje tryb ciemny */
+        /* Klasa .dark-theme aktywuje tryb ciemny */
         body.dark-theme {
             --color-bg: #121212;
             --color-bg-container: #1E1E1E;
@@ -62,7 +62,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* ZMIANA: Gradient tła tylko dla motywu ciemnego */
+        /* Gradient tła tylko dla motywu ciemnego */
         body.dark-theme {
             background-image: radial-gradient(circle at center, #2a2a2a 0%, var(--color-bg) 70%);
         }
@@ -70,7 +70,7 @@
         /* === NAGŁÓWEK I NAWIGACJA === */
         header {
             background-color: var(--color-bg-container);
-            /* ZMIANA: Kolor tekstu w nagłówku */
+            /* Kolor tekstu w nagłówku */
             color: var(--color-text);
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lżejszy cień */
@@ -107,7 +107,7 @@
         }
 
         nav a:hover {
-            /* ZMIANA: Poprawka koloru hover w motywie jasnym */
+            /* Poprawka koloru hover w motywie jasnym */
             color: #0077b3; 
             text-decoration: underline;
             transform: scale(1.05);
@@ -387,7 +387,7 @@
         footer {
             margin-top: 40px;
             padding: 30px;
-            /* ZMIANA: Dopasowanie tła stopki */
+            /* Dopasowanie tła stopki */
             background-color: var(--color-bg-container);
             color: var(--color-text-secondary);
             font-size: 14px;
@@ -455,36 +455,82 @@
 
     </style>
 </head>
-<body> <!-- ZMIANA: Usunięto klasę 'light-theme', JS się tym zajmie -->
+<body>
 
-    <!-- ZMIANA: Tylko reklamy Google AdSense zostały na górze -->
-    <div id="top-ads-container" style="text-align: center; background-color: var(--color-bg);">
-
-        <!-- REKLAMY GOOGLE (1) -->
+    <!-- ZMIANA: Reklamy "od innych" (pop-up) przeniesione na samą górę -->
+    <div id="top-ad-scripts" style="text-align: center;">
+        <!-- REKLAMY POP-UP (PRZENIESIONE NA GÓRĘ) -->
+        <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
+        <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
+    
+        <!-- REKLAMY HIGHPERFORMANCE (PRZENIESIONE NA GÓRĘ) -->
+        <!-- Umieszczam je w .ad-container, aby miały tło i marginesy -->
         <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7782110146823036"
-                 data-ad-slot="1234567890"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e57f905cb56d171f7a667907ea9d09ed',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
             </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
         </div>
-        <!-- REKLAMY GOOGLE (2) -->
+        
         <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7782110146823036"
-                 data-ad-slot="9876543210"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '0eb31f55c9c1dfb639e06d25e640027d',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
             </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
+        </div>
+        
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
+                    'format' : 'iframe',
+                    'height' : 300,
+                    'width' : 160,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
+        </div>
+        
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
+        </div>
+        
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '786f8d1076514166c7b4445571f0809d',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
         </div>
     </div>
+
 
     <header>
         <h1>Gra: Złap Cel!</h1>
@@ -494,7 +540,7 @@
                 <li><a href="about.html">O nas</a></li>
                 <li><a href="contact.html">Kontakt</a></li>
                 <li><a href="https://fortstar77.github.io/privacy/" target="_blank" rel="noopener noreferrer">Polityka Prywatności</a></li>
-                <!-- ZMIANA: Domyślna ikona to księżyc (bo motyw jest jasny) -->
+                <!-- Domyślna ikona to księżyc (bo motyw jest jasny) -->
                 <li><button id="theme-toggle-button" aria-label="Zmień motyw">🌙</button></li>
             </ul>
         </nav>
@@ -538,6 +584,34 @@
         </div>
 
     </main> 
+
+    <!-- ZMIANA: Reklamy Google AdSense przeniesione na dół (przed stopką) -->
+    <div id="bottom-ads-google" style="text-align: center; background-color: var(--color-bg);">
+        <!-- REKLAMY GOOGLE (1) -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7782110146823036"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <!-- REKLAMY GOOGLE (2) -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7782110146823036"
+                 data-ad-slot="9876543210"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
     
     <footer>
         <p>© 2025 FortStar77. Wszelkie prawa zastrzeżone.</p>
@@ -823,68 +897,8 @@
         });
     </script>
 
-    <!-- ZMIANA: Wszystkie reklamy inne niż Google AdSense przeniesione na sam dół strony -->
-    <div id="bottom-ad-scripts" style="display: none;">
-        <!-- REKLAMY POP-UP (PRZENIESIONE) -->
-        <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
-        <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
-    
-        <!-- REKLAMY HIGHPERFORMANCE (PRZENIESIONE) -->
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'e57f905cb56d171f7a667907ea9d09ed',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
-        
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '0eb31f55c9c1dfb639e06d25e640027d',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
-        
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
-                'format' : 'iframe',
-                'height' : 300,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
-        
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
-        
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '786f8d1076514166c7b4445571f0809d',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
-    </div>
+    <!-- ZMIANA: Reklamy inne niż Google AdSense przeniesione z dołu (już tu ich nie ma) -->
+    <!-- <div id="bottom-ad-scripts" ... > ... </div> -->
 
 </body>
 </html>
