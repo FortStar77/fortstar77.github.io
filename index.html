@@ -3,35 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Złap Kwadrat! - Szybka Gra Zręcznościowa</title>
+    <title>Złap Cel! - Gra Zręcznościowa (Wersja MAX)</title>
     
-    <meta name="description" content="Sprawdź swój refleks w grze 'Złap Czerwony Kwadrat!'. Jak szybko potrafisz klikać? Zagraj teraz za darmo i pobij swój rekord.">
+    <meta name="description" content="Przebudowana gra 'Złap Cel!'. Sprawdź swój refleks na różnych poziomach trudności. Jak szybko potrafisz klikać? Zagraj teraz i pobij swój rekord.">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7782110146823036"
      crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <style>
-        /* --- Globalne style --- */
+        /* === GLOBALNY RESET I MOTYW MROCZNY === */
+        :root {
+            --color-bg: #121212;
+            --color-bg-container: #1E1E1E;
+            --color-text: #E0E0E0;
+            --color-text-secondary: #AAAAAA;
+            --color-border: #333333;
+            --color-primary: #00A8FF; /* Żywy błękit */
+            --color-secondary: #4CAF50; /* Zielony Start */
+            --color-accent: #FF3B3B;   /* Czerwień Celu */
+            
+            --font-body: 'Inter', Arial, sans-serif;
+            --font-heading: 'Oswald', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: var(--font-body);
             text-align: center;
-            background-color: #f0f0f0;
+            background-color: var(--color-bg);
+            color: var(--color-text);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            /* Subtelny gradient kierujący wzrok na centrum */
+            background-image: radial-gradient(circle at center, #2a2a2a 0%, var(--color-bg) 70%);
         }
 
-        /* --- Nagłówek i Nawigacja --- */
+        /* === NAGŁÓWEK I NAWIGACJA === */
         header {
-            background-color: #333;
+            background-color: var(--color-bg-container);
             color: white;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 2px solid var(--color-border);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-family: var(--font-heading);
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         nav ul {
@@ -40,112 +76,261 @@
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 25px;
         }
 
         nav a {
-            color: #4db8ff;
+            color: var(--color-primary);
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
+            transition: color 0.2s, transform 0.2s;
         }
 
         nav a:hover {
+            color: #ffffff;
             text-decoration: underline;
+            transform: scale(1.05);
         }
 
-        /* --- Główny Kontener Treści --- */
+        /* === GŁÓWNY KONTENER TREŚCI === */
         main.container {
             max-width: 960px;
             margin: 30px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            background-color: var(--color-bg-container);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
 
-        /* --- Sekcje Tekstowe (Kluczowe dla AdSense) --- */
-        .content-section {
+        /* === SEKCJE TEKSTOWE === */
+       .content-section {
             text-align: left;
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .content-section h2 {
-            color: #333;
-            border-bottom: 2px solid #4db8ff;
+       .content-section h2 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
             padding-bottom: 5px;
             display: inline-block;
-        }
-
-        .content-section p, .content-section ul {
-            font-size: 1.1em;
-            color: #555;
-        }
-        
-        .content-section li {
-            margin-bottom: 10px;
-        }
-
-        /* --- Gra --- */
-        #game-info {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 2em;
             margin-bottom: 15px;
         }
 
-        #start-button {
-            font-size: 20px;
-            padding: 12px 25px;
+       .content-section p,.content-section ul {
+            font-size: 1.1em;
+            color: var(--color-text);
+        }
+        
+       .content-section li {
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+       .content-section strong {
+            color: var(--color-primary);
+        }
+
+        /* === KONTENERY REKLAM (Wszystkie) === */
+       .ad-container {
+            margin: 30px auto;
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--color-bg);
+            border-radius: 8px;
+            min-height: 90px;
+        }
+
+        /* === GRA - NOWE STYLE === */
+        
+        /* Poziomy Trudności */
+        #difficulty-select {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+       .difficulty-button {
+            font-family: var(--font-body);
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px 20px;
             cursor: pointer;
-            background-color: #4CAF50;
+            border: 2px solid var(--color-border);
+            border-radius: 5px;
+            background-color: #333;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+       .difficulty-button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+
+       .difficulty-button.active {
+            background-color: var(--color-primary);
+            color: var(--color-bg);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+        }
+
+        /* Interfejs Gry */
+        #game-info {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        #game-info span {
+            display: inline-block;
+            min-width: 60px;
+            padding: 5px 10px;
+            background-color: var(--color-bg);
+            border-radius: 5px;
+            color: var(--color-primary);
+        }
+        #game-info #high-score {
+            color: var(--color-secondary);
+        }
+
+        /* Przycisk Start (CTA) */
+        #start-button {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 15px 35px;
+            cursor: pointer;
+            background-color: var(--color-secondary);
             color: white;
             border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 0 #388E3C;
+            /* Animacja pulsowania */
+            animation: pulse-glow 2s infinite;
         }
 
         #start-button:hover {
             background-color: #45a049;
+            transform: scale(1.03);
+            animation-play-state: paused; /* Pauza animacji przy najechaniu */
+        }
+        #start-button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 0 #388E3C;
+        }
+        
+        /* Animacja @keyframes dla przycisku Start */
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 0 #388E3C, 0 0 10px rgba(76, 175, 80, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 4px 0 #388E3C, 0 0 25px rgba(76, 175, 80, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 0 #388E3C, 0 0 10px rgba(76, 175, 80, 0.3);
+            }
         }
 
+        /* Obszar Gry */
         #game-area {
-            /* POPRAWKA: Responsywność dla urządzeń mobilnych */
             width: 100%;
             max-width: 600px; 
-            height: 400px;
-            border: 3px solid #000;
-            background-color: #fff;
+            aspect-ratio: 4 / 3; /* Responsywność na mobilkach */
+            height: auto; /* Zastępuje stałą wysokość */
+            border: 3px solid var(--color-border);
+            background-color: #ffffff;
             margin: 20px auto;
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
+            transition: box-shadow 0.5s ease;
         }
 
+        /* Animacja aktywnej ramki gry */
+        #game-area.game-active {
+            /* Animacja pulsującej ramki */
+            animation: glow-border 1.5s infinite alternate;
+        }
+
+        @keyframes glow-border {
+            from {
+                border-color: var(--color-border);
+                box-shadow: 0 0 10px rgba(51, 51, 51, 0.5);
+            }
+            to {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 20px rgba(0, 168, 255, 0.7), 0 0 10px rgba(0, 168, 255, 0.5) inset;
+            }
+        }
+
+        /* Cel (Target) */
         #target {
             width: 50px;
             height: 50px;
-            background-color: red;
+            background-color: var(--color-accent);
             position: absolute;
             cursor: pointer;
             display: none;
-            transition: all 0.1s ease;
-            border-radius: 3px; /* Lekkie zaokrąglenie dla estetyki */
+            border-radius: 50%; /* Zmiana na koło */
+            box-shadow: 0 0 10px rgba(255, 59, 59, 0.5), 
+                        inset 0 0 10px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            /* Używamy animacji zamiast transition dla pojawienia się */
+            opacity: 0; 
         }
 
-        /* --- Reklamy --- */
-        .ad-container {
-            margin: 30px auto;
-            text-align: center;
+        #target.appear {
+            animation: target-appear 0.2s ease-out forwards;
         }
 
-        /* --- Stopka --- */
+        /* Animacja "wyskoku" celu */
+        @keyframes target-appear {
+            0% {
+                transform: scale(0.5) translateY(20px);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Animacja "kliknięcia" celu */
+        #target.clicked {
+            transform: scale(0.9) rotate(5deg);
+            background-color: #ff0000;
+            transition: transform 0.05s ease;
+        }
+
+        /* === STOPKA === */
         footer {
             margin-top: 40px;
             padding: 30px;
-            background-color: #222;
-            color: #aaa;
+            background-color: #111;
+            color: var(--color-text-secondary);
             font-size: 14px;
+            border-top: 1px solid var(--color-border);
         }
         
         footer p {
@@ -153,155 +338,405 @@
         }
 
         footer a {
-            color: #4db8ff;
+            color: var(--color-primary);
             text-decoration: none;
+            transition: color 0.2s;
         }
 
         footer a:hover {
+            color: #ffffff;
             text-decoration: underline;
         }
 
+        /* === DOSTOSOWANIE SWEETALERT2 DO MOTYWU MROCZNEGO === */
+       .swal2-popup {
+            background-color: var(--color-bg-container)!important;
+            color: var(--color-text)!important;
+            border-radius: 12px!important;
+        }
+       .swal2-title {
+            color: var(--color-primary)!important;
+            font-family: var(--font-heading)!important;
+        }
+       .swal2-html-container {
+            color: var(--color-text)!important;
+            font-size: 1.2em!important;
+        }
+       .swal2-confirm {
+            background-color: var(--color-primary)!important;
+            font-size: 1.1em!important;
+            border-radius: 5px!important;
+        }
+       .swal2-icon.swal2-success.swal2-success-ring {
+            border-color: var(--color-secondary)!important;
+        }
+       .swal2-icon.swal2-success [class^=swal2-success-line] {
+            background-color: var(--color-secondary)!important;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Gra: Złap Czerwony Kwadrat!</h1>
+        <h1>Gra: Złap Cel!</h1>
         <nav>
             <ul>
                 <li><a href="/">Strona Główna</a></li>
-                <li><a href="about.html">O nas</a></li> <li><a href="contact.html">Kontakt</a></li> <li><a href="https://fortstar77.github.io/privacy/" target="_blank">Polityka Prywatności</a></li>
+                <li><a href="about.html">O nas</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+                <li><a href="https://fortstar77.github.io/privacy/" target="_blank" rel="noopener noreferrer">Polityka Prywatności</a></li>
             </ul>
         </nav>
     </header>
+
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-7782110146823036"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle ||).push({});
+        </script>
+    </div>
 
     <main class="container">
 
         <section class="content-section">
             <h2>Sprawdź swój refleks!</h2>
-            <p>Witaj w "Złap Czerwony Kwadrat!" – prostej, ale wciągającej grze online, która przetestuje Twój refleks i szybkość reakcji. Zasady są banalnie proste, ale liczy się każda milisekunda. Czy jesteś gotów podjąć wyzwanie i wspiąć się na szczyt tabeli wyników?</p>
-            <p>Nasza gra to idealny sposób na krótką przerwę w pracy lub nauce. Wystarczy minuta, aby rozruszać umysł i sprawdzić, jak szybko potrafisz reagować. Powodzenia!</p>
+            <p>Witaj w "Złap Cel!" – prostej, ale wciągającej grze online, która przetestuje Twój refleks i szybkość reakcji. Zasady są banalnie proste, ale liczy się każda milisekunda. Wybierz poziom trudności i spróbuj pobić swój najlepszy wynik!</p>
+            <p>Nasza gra to idealny sposób na krótką przerwę w pracy lub nauce. Wystarczy chwila, aby rozruszać umysł i sprawdzić, jak szybko potrafisz reagować. Powodzenia!</p>
         </section>
-
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7782110146823036"
-                data-ad-slot="1234567890" data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
+        
         <section class="content-section">
             <h2>Jak grać?</h2>
-            <p>Opanowanie gry zajmuje tylko chwilę:</p>
             <ul>
-                <li>Naciśnij duży przycisk <strong>"Start!"</strong>, aby rozpocząć 15-sekundową rundę.</li>
-                <li>Gdy gra się rozpocznie, na polu gry pojawi się <strong>czerwony kwadrat</strong>.</li>
-                <li>Twoim zadaniem jest <strong>kliknąć kwadrat</strong> tak szybko, jak to możliwe.</li>
-                <li>Po każdym trafieniu, kwadrat natychmiast przeniesie się w inne losowe miejsce.</li>
-                <li>Masz <strong>15 sekund</strong>, aby zdobyć jak najwięcej punktów. Każde trafienie to jeden punkt.</li>
-                <li>Po zakończeniu czasu, zobaczysz swój wynik. Naciśnij "Zagraj ponownie?", aby spróbować pobić swój rekord!</li>
+                <li>Wybierz poziom trudności: <strong>Łatwy, Średni</strong> lub <strong>Trudny</strong>. Wpłynie to na czas gry, rozmiar celu i szybkość jego poruszania.</li>
+                <li>Naciśnij wielki przycisk <strong>"Start!"</strong>, aby rozpocząć rundę.</li>
+                <li>Gdy gra się rozpocznie, na polu gry pojawi się <strong>czerwony cel</strong>.</li>
+                <li>Twoim zadaniem jest <strong>kliknąć cel</strong> tak szybko, jak to możliwe.</li>
+                <li>Po każdym trafieniu, cel natychmiast przeniesie się w inne losowe miejsce.</li>
+                <li><strong>Uwaga!</strong> Na wyższych poziomach, jeśli nie trafisz celu wystarczająco szybko, sam zmieni on pozycję!</li>
+                <li>Po zakończeniu czasu, zobaczysz swój wynik oraz najlepszy rekord. Naciśnij "Zagraj ponownie?", aby spróbować go pobić!</li>
             </ul>
         </section>
 
-        <div id="game-info">
-            Wynik: <span id="score">0</span> | Czas: <span id="time">15</span>s
+        <div id="difficulty-select">
+            <button class="difficulty-button active" data-difficulty="easy">Łatwy</button>
+            <button class="difficulty-button" data-difficulty="medium">Średni</button>
+            <button class="difficulty-button" data-difficulty="hard">Trudny</button>
+        </div>
+
+        <div id="game-info" aria-live="polite" aria-atomic="true">
+            Wynik: <span id="score">0</span> | Czas: <span id="time">0</span>s | Najlepszy: <span id="high-score">0</span>
         </div>
 
         <button id="start-button">Start!</button>
 
-        <div id="game-area" aria-label="Obszar gry Złap Kwadrat">
-            <div id="target"></div>
+        <div id="game-area" aria-label="Obszar gry Złap Cel">
+            <div id="target" role="button" tabindex="0" aria-label="Złap Czerwony Cel"></div>
+        </div>
+
+        <div class="ad-container" id="ad-container-mid">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'cfcc8477017aacefd99edf2adbac32b2',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/cfcc8477017aacefd99edf2adbac32b2/invoke.js"></script>
         </div>
 
         <div class="ad-container">
             <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7782110146823036"
-                data-ad-slot="9876543210" data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
+                 style="display:block"
+                 data-ad-client="ca-pub-7782110146823036"
+                 data-ad-slot="9876543210"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
             <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
+                 (adsbygoogle = window.adsbygoogle ||).push({});
             </script>
         </div>
 
-    </main> <footer>
+    </main> 
+    
+    <footer>
         <p>© 2025 FortStar77. Wszelkie prawa zastrzeżone.</p>
         <p>
             <a href="about.html">O nas</a> | 
             <a href="contact.html">Kontakt</a> | 
-            <a href="https://fortstar77.github.io/privacy/" target="_blank">Polityka prywatności</a>
+            <a href="https://fortstar77.github.io/privacy/" target="_blank" rel="noopener noreferrer">Polityka prywatności</a>
         </p>
     </footer>
 
+    <script async="async" data-cfasync="false" src="//pl28007827.effectivegatecpm.com/e39f069b1a52f9be3d42777a5f9bd02d/invoke.js"></script>
+    <div id="container-e39f069b1a52f9be3d42777a5f9bd02d"></div>
+
+    <audio id="sound-click" src="https://raw.githubusercontent.com/kittykatattack/soundForGames/master/sounds/shoot.wav" preload="auto"></audio>
+    <audio id="sound-end" src="https://raw.githubusercontent.com/kittykatattack/soundForGames/master/sounds/music.wav" preload="auto"></audio>
+
+
     <script>
-        const target = document.getElementById('target');
-        const gameArea = document.getElementById('game-area');
-        const scoreDisplay = document.getElementById('score');
-        const timeDisplay = document.getElementById('time');
-        const startButton = document.getElementById('start-button');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        let score = 0;
-        let timeLeft = 15;
-        let gameInterval = null;
-        let isGameRunning = false;
+            // --- 1. REFERENCJE DO ELEMENTÓW DOM ---
+            const DOM = {
+                target: document.getElementById('target'),
+                gameArea: document.getElementById('game-area'),
+                scoreDisplay: document.getElementById('score'),
+                timeDisplay: document.getElementById('time'),
+                highScoreDisplay: document.getElementById('high-score'),
+                startButton: document.getElementById('start-button'),
+                gameInfo: document.getElementById('game-info'),
+                difficultyButtons: document.querySelectorAll('.difficulty-button')
+            };
 
-        startButton.addEventListener('click', startGame);
+            // --- 2. REFERENCJE DO DŹWIĘKÓW ---
+            const Sounds = {
+                click: document.getElementById('sound-click'),
+                end: document.getElementById('sound-end')
+            };
 
-        function startGame() {
-            score = 0;
-            timeLeft = 15;
-            scoreDisplay.textContent = score;
-            timeDisplay.textContent = timeLeft;
-            isGameRunning = true;
+            // --- 3. USTAWIENIA POZIOMÓW TRUDNOŚCI ---
+            const difficultySettings = {
+                easy: { time: 20, size: 60, interval: 1000 }, // Interwał w ms (1s)
+                medium: { time: 15, size: 50, interval: 700 }, // (0.7s)
+                hard: { time: 10, size: 30, interval: 450 }  // (0.45s)
+            };
 
-            startButton.style.display = 'none';
-            target.style.display = 'block';
-            gameInterval = setInterval(updateTimer, 1000);
-            moveTarget();
-        }
+            // --- 4. STAN GRY I KONFIGURACJA ---
+            let gameState = {
+                score: 0,
+                timeLeft: 0,
+                isGameRunning: false,
+                gameTimer: null,
+                targetInterval: null, // Timer dla automatycznego ruchu celu
+                highScore: 0
+            };
 
-        target.addEventListener('click', () => {
-            if (isGameRunning) {
-                score++;
-                scoreDisplay.textContent = score;
-                moveTarget();
+            let gameConfig = {...difficultySettings.easy }; // Domyślnie łatwy
+
+            // --- 5. GŁÓWNE FUNKCJE GRY ---
+
+            /**
+             * Inicjalizuje grę: wczytuje najlepszy wynik i ustawia listenery
+             */
+            function initGame() {
+                loadHighScore();
+                updateUI();
+                DOM.startButton.addEventListener('click', startGame);
+                DOM.target.addEventListener('click', handleTargetClick);
+                
+                // Listener dla klawiatury (Dostępność WCAG)
+                DOM.target.addEventListener('keydown', (e) => {
+                    if (e.key === ' ' |
+
+| e.key === 'Enter') {
+                        e.preventDefault(); // Zapobiega przewijaniu strony spacją
+                        handleTargetClick();
+                    }
+                });
+
+                // Listenery dla przycisków trudności
+                DOM.difficultyButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        setDifficulty(button.dataset.difficulty);
+                    });
+                });
             }
+
+            /**
+             * Ustawia poziom trudności gry
+             * @param {string} level - 'easy', 'medium', lub 'hard'
+             */
+            function setDifficulty(level) {
+                if (gameState.isGameRunning) return; // Nie zmieniaj w trakcie gry
+
+                gameConfig = {...difficultySettings[level] };
+                
+                // Aktualizacja UI przycisków
+                DOM.difficultyButtons.forEach(button => {
+                    button.classList.toggle('active', button.dataset.difficulty === level);
+                });
+                
+                updateUI(); // Zaktualizuj czas na wyświetlaczu
+            }
+
+            /**
+             * Rozpoczyna nową rundę gry
+             */
+            function startGame() {
+                if (gameState.isGameRunning) return;
+
+                // Reset stanu gry
+                gameState.score = 0;
+                gameState.timeLeft = gameConfig.time;
+                gameState.isGameRunning = true;
+                
+                // Wyczyść stare timery (na wszelki wypadek)
+                clearInterval(gameState.gameTimer);
+                clearInterval(gameState.targetInterval);
+
+                // Aktualizacja UI
+                updateUI();
+                DOM.startButton.style.display = 'none';
+                DOM.gameArea.classList.add('game-active'); // Dodaj poświatę
+                DOM.difficultyButtons.forEach(b => b.disabled = true); // Zablokuj przyciski
+
+                // Ustaw rozmiar celu
+                DOM.target.style.width = `${gameConfig.size}px`;
+                DOM.target.style.height = `${gameConfig.size}px`;
+                
+                DOM.target.style.display = 'block';
+                moveTarget(); // Pokaż cel po raz pierwszy
+
+                // Uruchom timery
+                gameState.gameTimer = setInterval(updateTimer, 1000);
+            }
+
+            /**
+             * Kończy rundę gry
+             */
+            function endGame() {
+                gameState.isGameRunning = false;
+                clearInterval(gameState.gameTimer);
+                clearInterval(gameState.targetInterval);
+
+                // Odtwórz dźwięk końca gry
+                Sounds.end.currentTime = 0;
+                Sounds.end.play();
+
+                // Aktualizuj najlepszy wynik
+                updateHighScore();
+
+                // Ukryj UI gry
+                DOM.target.style.display = 'none';
+                DOM.gameArea.classList.remove('game-active');
+                DOM.startButton.textContent = 'Zagraj ponownie?';
+                DOM.startButton.style.display = 'block';
+                DOM.difficultyButtons.forEach(b => b.disabled = false); // Odblokuj przyciski
+
+                // Pokaż modal SweetAlert2 zamiast alert()
+                Swal.fire({
+                    title: 'Koniec gry!',
+                    html: `
+                        <p style="font-size: 1.2em;">Twój wynik: <strong>${gameState.score}</strong></p>
+                        <p style="font-size: 1.1em;">Najlepszy wynik: <strong>${gameState.highScore}</strong></p>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'Super!',
+                    customClass: {
+                        popup: 'swal-dark-theme'
+                    }
+                });
+            }
+
+            /**
+             * Obsługuje kliknięcie (lub naciśnięcie klawisza) na celu
+             */
+            function handleTargetClick() {
+                if (!gameState.isGameRunning) return;
+
+                gameState.score++;
+                updateUI();
+
+                // Odtwórz dźwięk kliknięcia (z resetem)
+                Sounds.click.currentTime = 0;
+                Sounds.click.play();
+
+                // Animacja kliknięcia
+                DOM.target.classList.add('clicked');
+                setTimeout(() => {
+                    DOM.target.classList.remove('clicked');
+                }, 50); // Czas trwania animacji.clicked
+
+                moveTarget(); // Natychmiast przesuń cel
+            }
+
+            /**
+             * Przesuwa cel w losowe miejsce i resetuje timer automatycznego ruchu
+             */
+            function moveTarget() {
+                if (!gameState.isGameRunning) return;
+
+                // Wyczyść stary interwał automatycznego ruchu
+                clearInterval(gameState.targetInterval);
+
+                const areaWidth = DOM.gameArea.clientWidth;
+                const areaHeight = DOM.gameArea.clientHeight;
+                
+                // Użyj gameConfig dla rozmiaru
+                const targetSize = gameConfig.size;
+
+                const newX = Math.floor(Math.random() * (areaWidth - targetSize));
+                const newY = Math.floor(Math.random() * (areaHeight - targetSize));
+
+                DOM.target.style.left = `${newX}px`;
+                DOM.target.style.top = `${newY}px`;
+
+                // Aktywuj animację pojawienia się
+                DOM.target.classList.remove('appear');
+                void DOM.target.offsetWidth; // Trigger reflow
+                DOM.target.classList.add('appear');
+                
+                // Przenieś fokus klawiatury na cel (Dostępność WCAG)
+                DOM.target.focus();
+
+                // Ustaw nowy interwał automatycznego ruchu
+                gameState.targetInterval = setInterval(moveTarget, gameConfig.interval);
+            }
+
+            /**
+             * Aktualizuje licznik czasu co sekundę
+             */
+            function updateTimer() {
+                gameState.timeLeft--;
+                updateUI();
+
+                if (gameState.timeLeft <= 0) {
+                    endGame();
+                }
+            }
+
+            // --- 6. FUNKCJE POMOCNICZE (localStorage i UI) ---
+
+            /**
+             * Wczytuje najlepszy wynik z localStorage
+             */
+            function loadHighScore() {
+                const storedHighScore = localStorage.getItem('catchGameHighScore');
+                gameState.highScore = storedHighScore? parseInt(storedHighScore, 10) : 0;
+            }
+
+            /**
+             * Aktualizuje najlepszy wynik, jeśli obecny jest wyższy
+             */
+            function updateHighScore() {
+                if (gameState.score > gameState.highScore) {
+                    gameState.highScore = gameState.score;
+                    localStorage.setItem('catchGameHighScore', gameState.highScore);
+                }
+                updateUI(); // Upewnij się, że UI jest zsynchronizowane
+            }
+
+            /**
+             * Centralna funkcja do aktualizacji całego interfejsu gry
+             */
+            function updateUI() {
+                DOM.scoreDisplay.textContent = gameState.score;
+                DOM.timeDisplay.textContent = gameState.isGameRunning? gameState.timeLeft : gameConfig.time;
+                DOM.highScoreDisplay.textContent = gameState.highScore;
+            }
+            
+            // --- 7. START APLIKACJI ---
+            initGame();
+
         });
-
-        function moveTarget() {
-            const areaWidth = gameArea.clientWidth;
-            const areaHeight = gameArea.clientHeight;
-            const targetWidth = target.clientWidth;
-            const targetHeight = target.clientHeight;
-
-            const newX = Math.floor(Math.random() * (areaWidth - targetWidth));
-            const newY = Math.floor(Math.random() * (areaHeight - targetHeight));
-
-            target.style.left = newX + 'px';
-            target.style.top = newY + 'px';
-        }
-
-        function updateTimer() {
-            timeLeft--;
-            timeDisplay.textContent = timeLeft;
-
-            if (timeLeft <= 0) {
-                endGame();
-            }
-        }
-
-        function endGame() {
-            clearInterval(gameInterval);
-            isGameRunning = false;
-            target.style.display = 'none';
-            startButton.textContent = 'Zagraj ponownie?';
-            startButton.style.display = 'block';
-            alert('Koniec gry! Twój wynik to: ' + score);
-        }
     </script>
 
 </body>
