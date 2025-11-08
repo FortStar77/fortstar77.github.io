@@ -67,7 +67,7 @@
         }
 
         /* === PRE-HEADER (LINK REKLAMOWY) === */
-       .pre-header {
+      .pre-header {
             background-color: var(--color-bg);
             border-bottom: 1px solid var(--color-border);
             padding: 8px 20px;
@@ -77,20 +77,20 @@
             flex-wrap: wrap;
             transition: background-color 0.3s, border-color 0.3s;
         }
-       .top-hyperlink a {
+      .top-hyperlink a {
             color: var(--color-text-secondary);
             font-size: 0.9em;
             text-decoration: none;
             transition: color 0.2s;
         }
-       .top-hyperlink a:hover {
+      .top-hyperlink a:hover {
             color: var(--color-primary);
             text-decoration: underline;
         }
         
         /* Responsywność dla pre-headera */
         @media (max-width: 600px) {
-           .pre-header {
+          .pre-header {
                 gap: 10px;
             }
         }
@@ -165,14 +165,14 @@
         }
 
         /* === NOWY PRZEŁĄCZNIK JĘZYKA === */
-       .lang-toggle {
+      .lang-toggle {
             display: flex;
             border: 1px solid var(--color-border);
             border-radius: 20px;
             overflow: hidden;
             background-color: var(--color-bg);
         }
-       .lang-toggle-button {
+      .lang-toggle-button {
             background: none;
             border: none;
             padding: 8px 12px;
@@ -182,23 +182,23 @@
             cursor: pointer;
             transition: background-color 0.2s, color 0.2s;
         }
-       .lang-toggle-button:hover:not(.active) {
+      .lang-toggle-button:hover:not(.active) {
             background-color: var(--color-border);
         }
-       .lang-toggle-button.active {
+      .lang-toggle-button.active {
             background-color: var(--color-primary);
             color: #ffffff;
         }
 
 
         /* === NOWA SEKCJA ROZBUDOWUJĄCA (POD NAGŁÓWKIEM) === */
-       .new-content-wrapper {
+      .new-content-wrapper {
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px 20px;
             text-align: left;
         }
-       .new-content-wrapper h2 {
+      .new-content-wrapper h2 {
             font-family: var(--font-heading);
             font-size: 2.2em;
             color: var(--color-text);
@@ -209,18 +209,18 @@
             display: inline-block;
             width: auto;
         }
-       .new-content-wrapper.section-title-wrapper {
+      .new-content-wrapper.section-title-wrapper {
             text-align: center;
             margin-bottom: 25px;
         }
 
-       .feature-grid {
+      .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
-       .feature-card {
+      .feature-card {
             background: var(--color-bg-container);
             border-radius: 12px;
             padding: 25px;
@@ -232,42 +232,42 @@
             align-items: center;
             text-align: center;
         }
-       .feature-card:hover {
+      .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
         body.dark-theme.feature-card:hover {
             box-shadow: 0 8px 15px rgba(0,0,0,0.3);
         }
-       .feature-icon {
+      .feature-icon {
             width: 50px;
             height: 50px;
             margin-bottom: 15px;
             color: var(--color-primary);
         }
-       .feature-icon svg {
+      .feature-icon svg {
             width: 100%;
             height: 100%;
             fill: currentColor;
         }
-       .feature-card h3 {
+      .feature-card h3 {
             font-family: var(--font-heading);
             font-size: 1.5em;
             color: var(--color-text);
             margin-bottom: 10px;
         }
-       .feature-card p {
+      .feature-card p {
             color: var(--color-text-secondary);
             font-size: 1em;
         }
 
-       .game-card-grid {
+      .game-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 40px; /* NOWY ODSTĘP */
         }
-       .game-card {
+      .game-card {
             background: var(--color-bg-container);
             border-radius: 12px;
             overflow: hidden;
@@ -275,35 +275,35 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-       .game-card:hover {
+      .game-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
         body.dark-theme.game-card:hover {
             box-shadow: 0 8px 15px rgba(0,0,0,0.3);
         }
-       .game-card img {
+      .game-card img {
             width: 100%;
             height: 180px;
             object-fit: cover;
             background-color: #eee;
             border-bottom: 1px solid var(--color-border);
         }
-       .game-card-content {
+      .game-card-content {
             padding: 20px;
         }
-       .game-card-content h3 {
+      .game-card-content h3 {
             font-family: var(--font-heading);
             font-size: 1.4em;
             color: var(--color-text);
             margin-bottom: 10px;
         }
-       .game-card-content p {
+      .game-card-content p {
             color: var(--color-text-secondary);
             font-size: 0.95em;
             margin-bottom: 15px;
         }
-       .game-card-content.play-button {
+      .game-card-content.play-button {
             display: inline-block;
             background-color: var(--color-primary);
             color: #fff;
@@ -313,7 +313,7 @@
             font-weight: bold;
             transition: background-color 0.2s;
         }
-       .game-card-content.play-button:hover {
+      .game-card-content.play-button:hover {
             background-color: #0086cc;
         }
 
@@ -333,7 +333,7 @@
 
 
         /* === SEKCJE TEKSTOWE === */
-     .content-section {
+    .content-section {
             text-align: left;
             margin-bottom: 30px;
             padding-bottom: 20px;
@@ -341,7 +341,7 @@
             transition: border-color 0.3s;
         }
 
-     .content-section h2 {
+    .content-section h2 {
             font-family: var(--font-heading);
             font-weight: 500;
             color: var(--color-primary);
@@ -352,23 +352,23 @@
             margin-bottom: 15px;
         }
 
-     .content-section p,.content-section ul {
+    .content-section p,.content-section ul {
             font-size: 1.1em;
             color: var(--color-text);
              transition: color 0.3s;
         }
         
-     .content-section li {
+    .content-section li {
             margin-bottom: 10px;
             margin-left: 20px;
       }
       /* strong w li jest obsługiwany przez klucz.innerHTML */
-     .content-section strong {
+    .content-section strong {
             color: var(--color-primary);
       }
       
       /* === NOWA SEKCJA SEO/CTA (ULEPSZENIE) === */
-       .seo-boost {
+      .seo-boost {
             background: var(--color-bg);
             padding: 25px;
             border-radius: 12px;
@@ -376,7 +376,7 @@
             text-align: left;
             border: 1px solid var(--color-border);
         }
-       .seo-boost h2 {
+      .seo-boost h2 {
             /* Nadpisanie h2 z.content-section */
             text-align: center; 
             width: 100%;
@@ -384,19 +384,19 @@
             margin-bottom: 20px;
             border-bottom: none; /* Bez podkreslenia */
         }
-       .seo-boost p {
+      .seo-boost p {
             font-size: 1.1em;
             color: var(--color-text);
             margin-bottom: 15px;
             line-height: 1.7;
         }
-       .seo-boost strong {
+      .seo-boost strong {
             color: var(--color-primary);
         }
 
 
         /* === KONTENERY REKLAM (Wszystkie) === */
-     .ad-container {
+    .ad-container {
             margin: 30px auto;
             text-align: center;
             padding: 20px 0;
@@ -423,7 +423,7 @@
             flex-wrap: wrap;
         }
 
-     .difficulty-button {
+    .difficulty-button {
             font-family: var(--font-body);
             font-weight: bold;
             font-size: 16px;
@@ -436,12 +436,12 @@
             transition: all 0.2s ease;
         }
 
-     .difficulty-button:hover {
+    .difficulty-button:hover {
             background-color: var(--color-bg); /* Lekka zmiana tła przy najechaniu */
             transform: scale(1.05);
         }
 
-     .difficulty-button.active {
+    .difficulty-button.active {
             background-color: var(--color-primary);
             color: #ffffff; /* Biały tekst na aktywnym */
             border-color: var(--color-primary);
@@ -635,28 +635,28 @@
 
         /* === DOSTOSOWANIE SWEETALERT2 DO MOTYWU === */
         /* Domyślnie stylizujemy pod motyw jasny */
-      .swal2-popup {
+     .swal2-popup {
             background-color: #FFFFFF!important;
             color: #1a1a1a!important;
             border-radius: 12px!important;
         }
-      .swal2-title {
+     .swal2-title {
             color: var(--color-primary)!important;
             font-family: var(--font-heading)!important;
         }
-      .swal2-html-container {
+     .swal2-html-container {
             color: #1a1a1a!important;
             font-size: 1.2em!important;
         }
-      .swal2-confirm {
+     .swal2-confirm {
             background-color: var(--color-primary)!important;
             font-size: 1.1em!important;
             border-radius: 5px!important;
         }
-      .swal2-icon.swal2-success.swal2-success-ring {
+     .swal2-icon.swal2-success.swal2-success-ring {
             border-color: var(--color-secondary)!important;
         }
-      .swal2-icon.swal2-success [class^=swal2-success-line] {
+     .swal2-icon.swal2-success [class^=swal2-success-line] {
             background-color: var(--color-secondary)!important;
         }
 
@@ -673,6 +673,88 @@
 </head>
 <body>
 
+    <div id="top-ad-scripts" style="text-align: center;">
+        
+        <script>
+        (function(ajzpd){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = ajzpd |
+
+| {};
+        s.src = "\/\/tatteredpassenger.com\/b\/XLV\/s.dAGmlc0lYfWPcH\/jeumd9iu\/Z\/U\/lQkFPXTTYY2wOUTfca0BMzjJM\/tWNCjtYV5lNzzoQGyrN\/AA";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+        </script>
+        <script>
+        (function(pvph){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = pvph |
+
+| {};
+        s.src = "\/\/tatteredpassenger.com\/bUX\/V_s.d_Gnl\/0nYDW\/ca\/IeBmm9\/uMZHUglxk\/PHTBYI2\/OqTBc\/0nMoj_cqtANbjSY\/5JNqzEQfyTOwAr";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+        </script>
+        <script>
+        (function(vhzz){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = vhzz |
+
+| {};
+        s.src = "\/\/tatteredpassenger.com\/bdX\/Vdsrd.GDlg0bYjWYcP\/mebmh9Gu\/ZPUql\/k\/PjT\/Y\/2LOMTWc\/0AM\/TSk\/tkNAjBY\/5KNBzDQ\/yHMnAT";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+        </script>
+        <script src="https://politecabinet.com/d.mTFMzYdpGPNuvXZCGVUH/JeEmo9EuBZWUvlzktPXT_Yb2dOWTzcn0/M/DOMatNN/jsYC5VNbzRQ/waNCC/Zgs/aMWA1vpsd/DN0Yx-"></script>
+
+        <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
+        
+        <div class="ad-container">
+            <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = { 'key' : 'e57f905cb56d171f7a667907ea9d09ed', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = { 'key' : '0eb31f55c9c1dfb639e06d25e640027d', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = { 'key' : '8b4a8b99c04cf58f2931d06cfab6d287', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = { 'key' : 'd09b3b9fc18d730293fd08d9393c6a9e', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = { 'key' : '786f8d1076514166c7b4445571f0809d', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
+        </div>
+    </div>
     <div class="pre-header">
         <div class="top-hyperlink">
             <a href="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb" target="_blank" rel="noopener noreferrer" data-translate-key="adLink">
@@ -982,7 +1064,7 @@
                     howToLi3: "Gdy gra się rozpocznie, na polu gry pojawi się <strong>czerwony cel</strong>.",
                     howToLi4: "Twoim zadaniem jest <strong>kliknąć cel</strong> tak szybko, jak to możliwe.",
                     howToLi5: "Po każdym trafieniu, cel natychmiast przeniesie się w inne losowe miejsce.",
-                    howToLi6: "<strong>Uwaga!</strong> Na wyższych poziomach, jeśli nie trafisz celu wystarczająco szybko, sam zmieni on pozycję!",
+                    howToLi6: "<strong>Uwaga!</strong> Na wyższych poziomach, jeśli nie trafisz celu wystarczająjo szybko, sam zmieni on pozycję!",
                     howToLi7: "Po zakończeniu czasu, zobaczysz swój wynik oraz najlepszy rekord. Naciśnij \"Zagraj ponownie?\", aby spróbować go pobić!",
                     // Interfejs gry
                     btnEasy: "Łatwy",
